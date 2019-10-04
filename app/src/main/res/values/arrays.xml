@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2019 Google Inc.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<resources>
+    <!--These two arrays list cooking time intervals in minutes and the text representing 
+	that interval. They need to be in sync when anything added, removed or modified   -->
+	
+	<!--Text values of cooking time intervals -->
+    <string-array name="egg_array">
+        <item>Test only, better not use it for cooking :)</item>
+        <item>Soft Boiled</item>
+        <item>Slightly Firmer</item>
+        <item>Firm Yolk</item>
+        <item>Hard Boiled</item>
+    </string-array>
+    <!--Cooking time intervals in minutes -->
+    <integer-array name="minutes_array">
+        <item>0</item>
+        <item>4</item>
+        <item>6</item>
+        <item>10</item>
+        <item>12</item>
+    </integer-array>
+</resources>
