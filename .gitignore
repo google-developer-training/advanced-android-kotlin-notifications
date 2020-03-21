@@ -1,8 +1,2 @@
 .gradle/
-.gradle/buildOutputCleanup/buildOutputCleanup.lock
-.gradle/5.1.1/fileHashes/resourceHashesCache.bin
-.gradle/5.1.1/fileHashes/fileHashes.lock
-.gradle/5.1.1/fileHashes/fileHashes.bin
-.gradle/5.1.1/executionHistory/executionHistory.lock
-.gradle/5.1.1/executionHistory/executionHistory.bin
-.idea/workspace.xml
+.idea/
