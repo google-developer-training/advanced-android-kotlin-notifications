@@ -31,7 +31,6 @@ private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
-// TODO: Step 1.1 extension function to send messages (GIVEN)
 /**
  * Builds and delivers the notification.
  *
@@ -48,8 +47,14 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
     // TODO: Step 2.2 add snooze action
 
-    // TODO: Step 1.2 get an instance of NotificationCompat.Builder
     // Build the notification
+    val builder = NotificationCompat.Builder(
+        applicationContext,
+        applicationContext.getString(R.string.egg_notification_channel_id)
+    )
+        .setSmallIcon(R.drawable.cooked_egg)
+        .setContentText(applicationContext.getString(R.string.notification_title))
+        .setContentText(messageBody)
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 
@@ -63,7 +68,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 
         // TODO: Step 2.5 set priority
 
-    // TODO: Step 1.4 call notify
+    notify(NOTIFICATION_ID, builder.build())
 
 }
 
