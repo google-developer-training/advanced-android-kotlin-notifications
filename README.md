@@ -28,6 +28,6 @@ Getting Started
 ---------------
 
 1. Download
-2. Swtich to start branch
+2. Switch to start branch
 3. Run the app.
 
