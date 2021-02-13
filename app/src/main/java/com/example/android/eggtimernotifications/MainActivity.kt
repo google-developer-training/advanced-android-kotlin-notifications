@@ -16,8 +16,10 @@
 
 package com.example.android.eggtimernotifications
 
+import android.app.NotificationManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.android.eggtimernotifications.ui.EggTimerFragment
 
 class MainActivity : AppCompatActivity() {
@@ -31,5 +33,12 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.container, EggTimerFragment.newInstance())
                 .commitNow()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val notificationManager = ContextCompat.getSystemService(applicationContext, NotificationManager::class.java)
+        notificationManager!!.cancelAll()
     }
 }

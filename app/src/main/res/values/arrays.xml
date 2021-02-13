@@ -20,7 +20,7 @@
 	
 	<!--Text values of cooking time intervals -->
     <string-array name="egg_array">
-        <item>Test only, better not use it for cooking :)</item>
+        <item>Test only… not for cooking :)</item>
         <item>Soft Boiled</item>
         <item>Slightly Firmer</item>
         <item>Firm Yolk</item>

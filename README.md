@@ -11,7 +11,7 @@ You can start and stop the timer, choose different cooking intervals..
 
 In this codelab, working from this starter app, you:
 
-* Add notitications to the eggtimer app.
+* Add notifications to the egg timer app.
 * Use channels and importance for the app notifications. 
 * Customize and style the notifications.
 
@@ -23,11 +23,9 @@ You should be familiar with:
 
 * Services, AlarmManager, Broadcast Receivers.
 
-
 Getting Started
 ---------------
 
 1. Download
-2. Swtich to start branch
+2. Switch to start branch
 3. Run the app.
-
