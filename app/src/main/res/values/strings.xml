@@ -29,8 +29,8 @@
     <string name="egg_notification_channel_name" translatable="true">Egg</string>
     <string name="breakfast_notification_channel_id" translatable="false">fcm_default_channel</string>
     <string name="breakfast_notification_channel_name" translatable="true">Breakfast</string>
-    <string name="eggs_ready">It is time! Bon appetit!</string>
-    <string name="timer_running">Egg timer is running...</string>
+    <string name="eggs_ready">Egg is ready! Bon appetit!</string>
+    <string name="timer_running">Egg timer is running…</string>
     <string name="breakfast_notification_channel_description">Breakfast reminder</string>
-    <string name="snooze">Snooze</string>
+    <string name="snooze">SNOOZE</string>
 </resources>
