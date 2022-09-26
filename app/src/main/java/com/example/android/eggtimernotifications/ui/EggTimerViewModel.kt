@@ -48,7 +48,9 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
     private val timerLengthOptions: IntArray
     private val notifyPendingIntent: PendingIntent
 
+    // boolean to check if the timer was started. False by default
     private var _isStarted = false
+    // boolean to check if the switch was checked. False by default
     private var _isChecked = false
 
     private val alarmManager = app.getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -101,6 +103,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
      * @param isChecked, alarm status to be set.
      */
     fun setAlarm(isChecked: Boolean) {
+        // updated the private _isChecked boolean
         _isChecked = isChecked
         when (isChecked) {
             true -> timeSelection.value?.let { startTimer(it) }
@@ -115,9 +118,11 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
      */
     fun setTimeSelected(timerLengthSelection: Int) {
         _timeSelection.value = timerLengthSelection
-
+        // If the timer has started/initialized
         if (_isStarted) {
+            //cancel the current timer
             cancelNotification()
+            //start the new timer and alarm
             setAlarm(_isChecked)
         }
     }
