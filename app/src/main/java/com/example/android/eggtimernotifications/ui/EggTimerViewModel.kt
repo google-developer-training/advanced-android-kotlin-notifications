@@ -13,22 +13,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 package com.example.android.eggtimernotifications.ui
 
-import android.app.*
+import android.app.AlarmManager
+import android.app.Application
+import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.CountDownTimer
 import android.os.SystemClock
 import androidx.core.app.AlarmManagerCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.*
-import com.example.android.eggtimernotifications.receiver.AlarmReceiver
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.android.eggtimernotifications.R
+import com.example.android.eggtimernotifications.receiver.AlarmReceiver
 import com.example.android.eggtimernotifications.util.cancelNotifications
-import com.example.android.eggtimernotifications.util.sendNotification
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
 
@@ -40,6 +47,9 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
 
     private val timerLengthOptions: IntArray
     private val notifyPendingIntent: PendingIntent
+
+    private var _isStarted = false
+    private var _isChecked = false
 
     private val alarmManager = app.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     private var prefs =
@@ -91,6 +101,7 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
      * @param isChecked, alarm status to be set.
      */
     fun setAlarm(isChecked: Boolean) {
+        _isChecked = isChecked
         when (isChecked) {
             true -> timeSelection.value?.let { startTimer(it) }
             false -> cancelNotification()
@@ -104,18 +115,24 @@ class EggTimerViewModel(private val app: Application) : AndroidViewModel(app) {
      */
     fun setTimeSelected(timerLengthSelection: Int) {
         _timeSelection.value = timerLengthSelection
+
+        if (_isStarted) {
+            cancelNotification()
+            setAlarm(_isChecked)
+        }
     }
 
     /**
      * Creates a new alarm, notification and timer
      */
     private fun startTimer(timerLengthSelection: Int) {
+        _isStarted = true
         _alarmOn.value?.let {
             if (!it) {
                 _alarmOn.value = true
                 val selectedInterval = when (timerLengthSelection) {
                     0 -> second * 10 //For testing only
-                    else ->timerLengthOptions[timerLengthSelection] * minute
+                    else -> timerLengthOptions[timerLengthSelection] * minute
                 }
                 val triggerTime = SystemClock.elapsedRealtime() + selectedInterval
 
