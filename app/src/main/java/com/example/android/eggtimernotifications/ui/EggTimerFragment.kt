@@ -24,13 +24,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.databinding.FragmentEggTimerBinding
-import com.google.firebase.messaging.FirebaseMessaging
 
 class EggTimerFragment : Fragment() {
 
@@ -39,13 +37,13 @@ class EggTimerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         val binding: FragmentEggTimerBinding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_egg_timer, container, false
         )
 
-        val viewModel = ViewModelProviders.of(this).get(EggTimerViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(EggTimerViewModel::class.java)
 
         binding.eggTimerViewModel = viewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
@@ -75,7 +73,8 @@ class EggTimerFragment : Fragment() {
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
             notificationChannel.enableVibration(true)
-            notificationChannel.description = getString(R.string.breakfast_notification_channel_description)
+            notificationChannel.description =
+                getString(R.string.breakfast_notification_channel_description)
 
             val notificationManager = requireActivity().getSystemService(
                 NotificationManager::class.java
